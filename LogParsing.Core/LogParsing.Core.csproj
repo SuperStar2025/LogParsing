@@ -21,6 +21,7 @@
 	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<PackageIcon>icon.png</PackageIcon>
+	<PackageProjectUrl>https://github.com/SuperStar2025/LogParsing</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
