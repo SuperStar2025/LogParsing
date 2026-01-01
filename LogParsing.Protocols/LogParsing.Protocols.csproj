@@ -12,6 +12,8 @@
 	<PackageTags>log;parsing;iec104;csharp</PackageTags>
 	<PackageDescription>Compatible with Citect SCADA log protocol parsing library</PackageDescription>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<RepositoryUrl>https://github.com/SuperStar2025/LogParsing</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<IncludeSymbols>true</IncludeSymbols>
 	<TargetFramework>net8.0</TargetFramework>
