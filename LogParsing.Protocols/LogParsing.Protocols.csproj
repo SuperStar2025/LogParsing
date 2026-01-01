@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageId>LogParsing.Protocols</PackageId>
+	<PackageVersion>1.0.0</PackageVersion>
+	<Title>Log Parsing Protocols Library</Title>
+	<Authors>Vcchaibin</Authors>
+	<Description>A high-performance IEC 60870-5-104 and Modbus logging protocol parsing library for Citect SCADA systems on the .NET platform. It is compatible with and uses LogEntry.NetworkData integrated in LogParsing.Core as its input source.
+一个用于 .NET 平台上的 Citect SCADA 系统的、高性能的 IEC 60870-5-104 和 Modbus 日志协议解析库。兼容LogParsing.Core中整合的LogEntry.NetworkData并作为输入源。
+	</Description>
+	<PackageTags>log;parsing;iec104;csharp</PackageTags>
+	<PackageDescription>Compatible with Citect SCADA log protocol parsing library</PackageDescription>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	<IncludeSymbols>true</IncludeSymbols>
+	<TargetFramework>net8.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<AnalysisLevel>latest</AnalysisLevel>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="IEC104\Models\" />
+    <Folder Include="Modbus\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\FZDT-01\Desktop\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

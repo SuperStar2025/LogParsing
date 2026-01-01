@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<PackageId>LogParsing.Core</PackageId>
+	<PackageVersion>1.0.0</PackageVersion>
+	<Title>Log Parsing Core Library</Title>
+	<Authors>Vcchaibin</Authors>
+	<Description>A high-performance IEC 60870-5-104 and Modbus log parsing library for Citect SCADA on the .NET platform.
+一个用于 .NET 平台上的 Citect SCADA 系统的、高性能的 IEC 60870-5-104 和 Modbus 日志解析库。
+	</Description>
+	<PackageTags>log;parsing;iec104;modbus;csharp</PackageTags>
+	<PackageDescription>Compatible Citect SCADA log parsing library</PackageDescription>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	<IncludeSymbols>true</IncludeSymbols>
+	<TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<AnalysisLevel>latest</AnalysisLevel>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Internal\Readers\" />
+    <Folder Include="Options\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>LogParsing.Core.Tests</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="C:\Users\FZDT-01\Desktop\icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+</Project>

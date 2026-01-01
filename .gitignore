@@ -1,0 +1,35 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+*.exe
+*.dll
+*.pdb
+*.cache
+
+# Test output
+**/TestResults/
+**/*.testresults
+**/*.trx
+
+# Resource/data files (add your patterns)
+*.dat
+*.bak
+*.log
+*.tmp
+
+# NuGet
+packages/
+project.lock.json
+project.assets.json
+*.nupkg
+
+# Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Other
+Thumbs.db
