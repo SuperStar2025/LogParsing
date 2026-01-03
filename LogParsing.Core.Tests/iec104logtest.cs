@@ -63,6 +63,40 @@ namespace LogParsing.Core.Tests
                 @"2023-07-17 07:42:22.414	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  2b  43  00  48  41  00  00  00  d8  42  00  4a  41  00  00",
                 @"2023-07-17 07:42:22.414	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  a0  41  00  4c  41  00  00  80  c5  43  00  4d  41  00  00",
                 @"2023-07-17 07:42:22.414	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  c5  43  00"
+            };        
+        /// <summary>
+        /// 示例不符合规约的日志行集合，模拟包含接收/发送的 IEC 104 原始十六进制数据的多行日志，
+        /// 用于测试帧组装和完整解析流程以及错误处理。
+        /// </summary>
+        private readonly string[] lineSomeErr = new[]
+            {
+
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3611]	Channel (0) : Received 236 bytes of data",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	68  ea  de  3b  f2  0f  0d  1c  03  00  01  00  0a  40  00  e1",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	7a  54  3f  00  0f  40  00  99  99  0a  42  00  3c  40  00  85",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	eb  51  3f  00  5c  40  00  00  80  cb  44  00  60  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	40  cb  44  00  62  40  00  00  c0  ca  44  00  64  03  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  cb  44  00  6a  40  00  00  a0  ca  44  00  73  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  00  00  00  a8  40  00  00  00  00  00  00  ac  40  00  47",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	0d  cd  43  00  ad  40  00  c2  51  4b  c4  00  b2  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  00  00  00  b6  40  00  7a  60  c9  43  00  b7  40  00  51",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	a0  73  43  00  0c  41  00  33  8b  c0  43  00  00  00  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  60  f9  7f  b4  fd  d5  02  2a  26  80  7c  70  fd  d5  02",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  26  80  7c  20  00  d6  02  39  00  d6  02  3c  00  d6  02",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	81  9b  45  00  24  da  58  00  20  00  d6  02  78  00  d6  02",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	e8  fe  d5  02  9b  9b  45  00  ff  ff  ff  ff  ff  ff  ff  ff",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  60  f9  7f  84  fd  d5  02  02  01  00  00  20  00  d6  02",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	e8  fe  d5  02  bb  cf  9c  00  78  00  d6  02",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3611]	Channel (0) : Received 140 bytes of data",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	68  8a  e0  3b  f2  0f  0d  10  03  00  01  00  0a  40  00  e1",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	7a  54  3f  00  0f  40  00  99  99  0a  42  00  3c  40  00  85",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	eb  51  3f  00  5c  40  00  00  80  cb  44  00  60  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	40  cb  44  00  62  40  00  00  c0  ca  44  00  64  03  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  cb  44  00  6a  40  00  00  a0  ca  44  00  73  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  00  00  00  a8  40  00  00  00  00  00  00  ac  40  00  47",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	0d  cd  43  00  ad  40  00  c2  51  4b  c4  00  b2  40  00  00",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	00  00  00  00  b6  40  00  7a  60  c9  43  00  b7  40  00  51",
+                @"2023-07-17 08:26:46.444	+08:00	[DEBUG]	[PROT       ]	[0x5430]	[iec870ip        ]	[(GLOBAL)        ]	[Citect::Drivers::IEC870IP::ProtoChannel::LogNetworkData()]	[.\protocol.cpp                ]	[3635]	a0  73  43  00  0c  41  00  33  8b  c0  43  00"
             };
         /// <summary>
         /// 示例日志行集合，模拟包含 U 帧（控制帧）交互的日志，
@@ -109,20 +143,20 @@ namespace LogParsing.Core.Tests
             // Act
             // 使用通用解析助手方法，将日志行解析并添加到缓冲区
             var storedEntries = LogParserHelper.ParseLinesToBuffer<PowerLogEntry>(
-                lineSomeU,   // 待解析的日志行集合
+                lineSomeErr,   // 待解析的日志行集合
                 parser,     // 日志解析器
                 buffer      // 缓冲区
             );
 
             // Assert
-            Assert.Equal(lineSomeU.Length, buffer.Count);
+            Assert.Equal(lineSomeErr.Length, buffer.Count);
 
             var assembler = new PowerFrameAssembler();
 
             var frames = assembler.Assemble(storedEntries).ToList();
 
 
-            Assert.Equal(lineSomeU.Length, storedEntries.Count);
+            Assert.Equal(lineSomeErr.Length, storedEntries.Count);
 
             foreach (var power in storedEntries)
             {

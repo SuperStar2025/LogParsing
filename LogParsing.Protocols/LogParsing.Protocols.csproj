@@ -30,11 +30,10 @@
     <Folder Include="IEC104\Models\" />
     <Folder Include="Modbus\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="C:\Users\FZDT-01\Desktop\icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
