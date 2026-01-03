@@ -1,0 +1,39 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  nugetSource: 'https://api.nuget.org/v3/index.json'
+
+steps:
+# 1️⃣ 检出代码
+- task: Checkout@1
+
+# 2️⃣ 安装 .NET SDK（如果 agent 没有）
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+
+# 3️⃣ 还原依赖
+- script: dotnet restore
+  displayName: 'Restore NuGet Packages'
+
+# 4️⃣ 编译项目
+- script: dotnet build --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build Project'
+
+# 5️⃣ 运行测试（可选，如果你有测试项目）
+# - script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
+#   displayName: 'Run Tests'
+
+# 6️⃣ 打包成 NuGet 包
+- script: dotnet pack LogParsing.Core/LogParsing.Core.csproj --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory)
+  displayName: 'Pack NuGet Package'
+
+# 7️⃣ 推送到 NuGet.org
+- script: dotnet nuget push "$(Build.ArtifactStagingDirectory)/*.nupkg" --api-key $(NUGET_API_KEY) --source $(nugetSource) --skip-duplicate
+  displayName: 'Publish to NuGet'
